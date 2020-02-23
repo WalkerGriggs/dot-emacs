@@ -1,11 +1,18 @@
-# Compiled
 *.elc
-
-# Packaging
 .cask
-
-# Backup files
 *~
-
-# Undo-tree save-files
 *.~undo-tree
+
+.lsp-session-v1
+.last-package-update-day
+
+/auto-save-list/
+/autoloads.el
+/compiled/
+/elpa/
+/info/
+/logs/
+/transient/
+
+custom.el
+recentf
