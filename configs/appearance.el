@@ -6,6 +6,7 @@
 ;;; Code
 
 (use-package dracula-theme)
+(use-package all-the-icons :defer 1)
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)

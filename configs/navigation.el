@@ -27,7 +27,7 @@
         ivy-initial-inputs-alist nil
         ivy-re-builders-alist
         '((swiper . ivy--regex-plus)
-          (t . ivy--regex-fuzzy))))
+          (t . ivy--regex-plus))))
 
 (use-package counsel-projectile
   :bind
@@ -36,32 +36,18 @@
 
 (use-package vimish-fold
   :commands (vimish-fold-toggle
-             vimish-fold)
-  :bind
-    (("C-c C-f" . vimish-fold)
-     ("C-c C-u" . vimish-fold-unfold)
-     ("C-c C-t" . vimish-fold-toggle)
-     ("C-c C-r" . vimish-fold-delete)))
+             vimish-fold))
 
 ;; hl-region
 ;; github.com/walkergriggs/hl-region
 (use-package hl-region
   :load-path "hl-region" ;; or wherever it's cloned
   :commands (hl-region
-             hl-region-remove)
-  :bind
-  (("C-c h h" . hl-region)
-   ("C-c h r" . hl-region-remove)
-   ("C-c h R" . hl-region-remove-all)
-   ("C-c h n" . hl-region-next-highlight)
-   ("C-c h p" . hl-region-prev-highlight)))
+             hl-region-remove))
 
 (use-package dumb-jump
-  :bind (("C-c j g" . dumb-jump-go)
-         ("C-c j b" . dumb-jump-back)
-         ("C-c j q" . dumb-jump-quick-look)
-         ("C-c j p" . dumb-jump-prompt))
   :config (setq dumb-jump-selector 'ivy
                 dumb-jump-aggressive t
                 dumb-jump-confirm-jump-to-modified-file t))
-;;; navigation.el ends here
+
+;; navigation.el ends here

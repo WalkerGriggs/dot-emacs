@@ -4,12 +4,6 @@
 ;; This file is not part of GNU Emacs.
 
 ;;; Code
-
-;; Magit
-(use-package magit
-  :bind (("C-c s" . magit-status)
-         ("C-c d" . magit-diff)))
-
 (use-package diff-hl
   :init (global-diff-hl-mode)
   :config (setq diff-hl-side 'right))

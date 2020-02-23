@@ -7,7 +7,6 @@
 
 ;; Whitespace
 (use-package whitespace
-  :bind (("C-c C-w" . whitespace-mode))
   :init
   (dolist (hook '(prog-mode-hook conf-mode-hook))
     (add-hook hook #'whitespace-mode))
