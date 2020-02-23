@@ -42,7 +42,7 @@
 
   :config
   (erc-track-mode t)
-  (add-hook 'erc-connect-pre-hook (lambda (x) (erc-update-modules))))
+  (add-hook 'erc-connect-pre-hook (lambda (x) (erc-update-modules)))
 
   (setq erc-kill-buffer-on-part        t
         erc-kill-queries-on-quit       t
@@ -57,19 +57,11 @@
 
         erc-prompt (lambda () (concat "" (buffer-name) "]")))
 
+  ;; Match notice and timestamp faces to comments.
+  (let ((color (face-attribute 'font-lock-comment-face :foreground)))
+    (set-face-attribute 'erc-notice-face nil :foreground color :weight 'normal)
+    (set-face-attribute 'erc-timestamp-face nil :foreground color :weight 'bold)))
+
 (use-package erc-hl-nicks
   :after erc)
-
-(use-package erc-image
-  :after erc
-  :init (with-eval-after-load 'erc
-          (require 'erc-image)
-          (add-to-list 'erc-modules 'image)))
-
-(use-package erc-yt
-  :after erc
-  :init (with-eval-after-load 'erc
-          (require 'erc-youtube)
-          (add-to-list 'erc-modules 'youtube)))
-
 ;;; erc.el ends here
