@@ -16,6 +16,8 @@
 
   (require 'evil-surround)
 
+  (evil-set-initial-state 'vterm-mode 'emacs)
+
   (setq evil-default-cursor t
         evil-normal-state-cursor 'box
         evil-visual-state-cursor 'hollow)

@@ -38,7 +38,8 @@
 ;; Linum
 (use-package linum
   :config
-  (global-linum-mode t)
+  (dolist (hook '(prog-mode-hook conf-mode-hook))
+    (add-hook hook #'linum-mode))
   (setq linum-format "%d "
         column-number-mode t))
 
