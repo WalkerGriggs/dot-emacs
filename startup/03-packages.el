@@ -9,6 +9,7 @@
                     "general"
                     "appearance"
                     "navigation"
+                    "ibuffer"
                     "hydra"
                     "evil"
                     "git"
