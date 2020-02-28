@@ -8,8 +8,6 @@
 (use-package lsp-mode
   :defer package-defer-time ;; kick the load-time can
   :config
-  ;;(add-hook 'python-mode-hook #'lsp)
-  ;;(add-hook 'rust-mode-hook #'lsp)
   (add-hook 'ruby-mode-hook #'lsp)
   (add-hook 'go-mode-hook #'lsp))
 

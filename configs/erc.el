@@ -27,19 +27,6 @@
           (string-trim
            (replace-regexp-in-string "\n+" " " str))))
 
-  (defvar erc-channel-stack nil
-    "Channels that have not yet been visited by erc-next-channel-buffer")
-
-  (defun erc-next-channel-buffer ()
-    "Switch current window to the next, univisted channel buffer."
-    (interactive)
-    (when (null erc-channel-stack)
-      (setq erc-channel-stack
-            (remove (current-buffer) (erc-channel-list nil))))
-    (let ((target (pop erc-channel-stack)))
-      (if target
-          (switch-to-buffer target))))
-
   :config
   (erc-track-mode t)
   (add-hook 'erc-connect-pre-hook (lambda (x) (erc-update-modules)))

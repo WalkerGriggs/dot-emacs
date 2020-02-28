@@ -8,8 +8,6 @@
 ;; Whitespace
 (use-package whitespace
   :init
-  (dolist (hook '(prog-mode-hook conf-mode-hook))
-    (add-hook hook #'whitespace-mode))
   (add-hook 'before-save-hook #'whitespace-cleanup)
   :config
   (setq whitespace-line-column 100 ;; Set indent limit.

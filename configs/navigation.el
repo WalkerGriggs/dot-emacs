@@ -8,11 +8,6 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 
-(global-set-key (kbd "C-x h") 'windmove-left)
-(global-set-key (kbd "C-x j") 'windmove-down)
-(global-set-key (kbd "C-x k") 'windmove-up)
-(global-set-key (kbd "C-x l") 'windmove-right)
-
 (use-package ivy
   :demand
   ;; :diminish (ivy-mode . "")
