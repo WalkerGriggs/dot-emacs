@@ -6,7 +6,8 @@
 ;;; Code
 
 (use-package hydra
-  :bind (("C-c e" . hydra-erc/body)
+  :bind (("C-c i" . hydra-erc/body)
+         ("C-c e" . hydra-eyebrowse/body)
          ("C-c j" . hydra-dumb-jump/body)
          ("C-c o" . hydra-org/body)
          ("C-c r" . hydra-hl-region/body)
@@ -41,6 +42,25 @@
     ("n" erc-channel-names     "names")
     ("u" my/erc-count-users    "users"))))
 
+(defhydra hydra-eyebrowse (:color teal :hint nil)
+  "
+^Action^
+^^^^^^^^-----------------------------------------------------------------
+_r_: rename        _c_: close        _'_: last       [0..9]: Switch
+"
+  ("r" eyebrowse-rename-window-config)
+  ("c" eyebrowse-close-window-config)
+  ("'" eyebrowse-last-window-config)
+  ("1" eyebrowse-switch-to-window-config-1)
+  ("2" eyebrowse-switch-to-window-config-2)
+  ("3" eyebrowse-switch-to-window-config-3)
+  ("4" eyebrowse-switch-to-window-config-4)
+  ("5" eyebrowse-switch-to-window-config-5)
+  ("6" eyebrowse-switch-to-window-config-6)
+  ("7" eyebrowse-switch-to-window-config-7)
+  ("8" eyebrowse-switch-to-window-config-8)
+  ("9" eyebrowse-switch-to-window-config-9))
+
 (pretty-hydra-define hydra-dumb-jump
   (:hint nil :color teal :quit-key "q" :title (with-faicon "location-arrow" "dump-jump" 1 -0.05))
   ("Action"
@@ -55,7 +75,8 @@
    (("m i" org-italics-region-or-point   "italicize")
     ("m b" org-bold-region-or-point      "bold")
     ("m u" org-underline-region-or-point "underline")
-    ("m c" org-code-region-or-point      "code"))))
+    ("m c" org-code-region-or-point      "code")
+    ("c"   org-capture                   "capture"))))
 
 (pretty-hydra-define hydra-hl-region
   (:hint nil :color teal :quit-key "q" :title (with-faicon "pencil" "hl-region" 1 -0.05))

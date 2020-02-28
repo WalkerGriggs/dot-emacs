@@ -67,6 +67,15 @@
   (:map ivy-mode-map
         ("C-c f" . counsel-projectile-find-file)))
 
+(use-package eyebrowse
+  :config
+  (eyebrowse-mode t)
+  (setq eyebrowse-mode-line-separator ", "
+        eyebrowse-mode-line-style     'always
+        eyebrowse-new-workspace       t
+        eyebrowse-slot-format         "%s"
+        eyebrowse-tagged-slot-format  "%t"))
+
 (use-package vimish-fold
   :commands (vimish-fold-toggle
              vimish-fold))
