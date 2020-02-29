@@ -17,6 +17,10 @@
   (require 'evil-surround)
 
   (evil-set-initial-state 'vterm-mode 'emacs)
+  (evil-set-initial-state 'pdf-view-mode 'emacs)
+  (add-hook 'pdf-view-mode-hook
+            (lambda ()
+              (set (make-local-variable 'evil-emacs-state-cursor) (list nil))))
 
   (setq evil-default-cursor t
         evil-normal-state-cursor 'box

@@ -17,6 +17,7 @@
                     "terminals"
                     "whitespace"
                     "languages"
+                    "pdf"
                     "erc"
                     "lsp")) ;; load the heaviest (and defered) package last
 
