@@ -23,10 +23,4 @@
 
 ;; Text mode hooks
 (add-hook 'text-mode-hook 'visual-line-mode)
-
-;; Autopair
-(use-package autopair
-  :config
-  (dolist (hook '(prog-mode-hook conf-mode-hook))
-    (add-hook hook #'autopair-mode)))
 ;;; general.el ends here

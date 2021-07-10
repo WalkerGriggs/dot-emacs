@@ -13,7 +13,7 @@
 ;; Copyright © 2016–present Walker Griggs <walker@walkergriggs.com>
 ;;
 ;; Author: Walker Griggs <walker@walkergriggs.com>
-;; URL: https://github.com/walkergriggs/dotfiles/emacs
+;; URL: https://github.com/walkergriggs/dot-emacs
 ;; Keywords: convenience, configuration
 ;;
 ;; This file is not part of GNU Emacs.
@@ -61,7 +61,8 @@
 (add-to-list 'load-path startup-dir)
 (require '01-globals)
 (require '02-defuns)
-(require '03-packages)
+(require '03-nano)
+(require '04-packages)
 
 (defvar init-duration (float-time
                        (time-since

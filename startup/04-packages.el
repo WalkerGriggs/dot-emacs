@@ -1,4 +1,4 @@
-;;; startup/03-packages.el -*- lexical-binding: t; -*-
+;;; startup/04-packages.el -*- lexical-binding: t; -*-
 ;;
 ;; Keywords: convenience, startup
 ;; This file is not part of GNU Emacs.
@@ -21,5 +21,5 @@
                     "erc"
                     "lsp")) ;; load the heaviest (and defered) package last
 
-(provide '03-packages)
-;;; 03-packages.el ends here
+(provide '04-packages)
+;;; 04-packages.el ends here

@@ -11,18 +11,6 @@
 
 (set-frame-font "IBM Plex Mono 11" nil t)
 
-(use-package dracula-theme
-  :init
-  (when (not (member "dracula" (custom-available-themes)))
-    (load-theme 'dracula t)))
-
-(use-package all-the-icons
-  :defer t
-  :if window-system
-  :config
-  (when (not (member "all-the-icons" (font-family-list)))
-    (all-the-icons-install-fonts t)))
-
 ;;Idle Highlight
 (use-package idle-highlight-mode
   :config (idle-highlight-mode 1)
@@ -36,6 +24,7 @@
   (setq-default left-fringe-width  0
                 right-fringe-width  5))
 
+;; Hlinum
 (use-package hlinum
   :init (hlinum-activate))
 
@@ -58,9 +47,4 @@
 (use-package smart-mode-line
   :init (add-hook 'after-init-hook 'sml/setup)
   :config (setq sml/theme 'respectful))
-
-(use-package minions
-  :config (minions-mode 1)
-  (setq minions-mode-line-lighter "~"))
-
 ;;; appearance.el ends here

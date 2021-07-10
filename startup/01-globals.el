@@ -7,8 +7,10 @@
 
 (require 'no-littering nil :noerror)
 
-(setq user-full-name "Walker Griggs")
 (setq package-defer-time 3)
+
+(setq ivy-height 10)
+(setq user-full-name "Walker Griggs")
 
 ;; The default value is 0.8MB, which is just too small.
 (setq gc-cons-threshold 50000000)
