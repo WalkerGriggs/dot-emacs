@@ -10,7 +10,8 @@
          ("C-c e" . hydra-eyebrowse/body)
          ("C-c j" . hydra-dumb-jump/body)
          ("C-c o" . hydra-org/body)
-         ("C-c r" . hydra-hl-region/body)
+         ;; ("C-c r" . hydra-hl-region/body)
+         ("C-c r" . hydra-org-roam/body)
          ("C-c v" . hydra-vimish-fold/body)
          ("C-c w" . hydra-whitespace/body)))
 
@@ -77,6 +78,14 @@ _r_: rename        _c_: close        _'_: last       [0..9]: Switch
     ("m u" org-underline-region-or-point "underline")
     ("m c" org-code-region-or-point      "code")
     ("c"   org-capture                   "capture"))))
+
+(pretty-hydra-define hydra-org-roam
+  (:hint nil :color teal :quit-key "q" :title (with-faicon "book" "Org" 1 -0.05))
+  ("Action"
+   (("n f" org-roam-node-find   "find node")
+    ("n i" org-roam-node-insert      "insert node")
+    ("n c" org-roam-capture "capture node")
+    ("n g" org-roam-graph "graph nodes"))))
 
 (pretty-hydra-define hydra-hl-region
   (:hint nil :color teal :quit-key "q" :title (with-faicon "pencil" "hl-region" 1 -0.05))

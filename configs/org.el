@@ -5,6 +5,49 @@
 
 ;;; Code
 
+(setq
+ org-ref-default-bibliography   '("~/Documents/braindump/biblio/papers.bib")
+ bibtex-completion-bibliography '("/home/rubik/Documents/braindump/biblio/papers.bib")
+ bibtex-completion-notes-path   '("/home/rubik/Documents/braindump/biblio/")
+ bibtex-completion-pdf-field    "file"
+ bibtex-completion-notes-template-multiple-files
+ (concat
+  "#+TITLE: ${title}\n"
+  "#+ROAM_KEY: cite:${=key=}\n"
+  "* TODO Notes\n"
+  ":PROPERTIES:\n"
+  ":Custom_ID: ${=key=}\n"
+  ":NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")\n"
+  ":AUTHOR: ${author-abbrev}\n"
+  ":JOURNAL: ${journaltitle}\n"
+  ":DATE: ${date}\n"
+  ":YEAR: ${year}\n"
+  ":DOI: ${doi}\n"
+  ":URL: ${url}\n"
+  ":END:\n\n"
+  ))
+
+(use-package org-roam-bibtex
+  :after (org-roam)
+  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :config
+  (setq org-roam-capture-templates
+        '(("r" "bibliography reference" plain "%?"
+           :if-new
+           (file+head "biblio/${citekey}.org" "#+title: ${title}\n")
+           :unnarrowed t))))
+
+(use-package org-roam
+      :ensure t
+      :init
+      (setq org-roam-v2-ack t)
+      :config
+      (setq org-roam-completion-system 'ivy
+            org-roam-directory (file-truename "~/Documents/braindump"))
+      (org-roam-setup)
+      (require 'org-roam-protocol))
+
+
 (use-package org
   :mode (("\\.org$" . org-mode))
   :config
@@ -25,17 +68,11 @@
           ("CANCELED" . org-archived)
           ("DONE"     . org-done)))
 
-  (setq org-capture-templates
-        '(("s" "Code Snippet" entry
-         (file (lambda () (concat org-directory "snippets.org")))
-         ;; Prompt for tag and language
-         "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")))
+  (add-to-list 'org-structure-template-alist
+               '("s" . "src"))
 
   (add-to-list 'org-structure-template-alist
-               '("s" "#+BEGIN_SRC ? \n\n#+END_SRC"))
-
-  (add-to-list 'org-structure-template-alist
-               '("q" "#+BEGIN_QUOTE ? \n\n#+END_QUOTE")))
+               '("q" . "quote")))
 
 (use-package org-bullets
   :commands (org-bullets-mode)
