@@ -13,7 +13,7 @@
          ;; ("C-c r" . hydra-hl-region/body)
          ("C-c r" . hydra-org-roam/body)
          ("C-c v" . hydra-vimish-fold/body)
-         ("C-c w" . hydra-whitespace/body)))
+         ("C-c w" . hydra-windows/body)))
 
 (use-package major-mode-hydra
   :after hydra
@@ -104,9 +104,11 @@ _r_: rename        _c_: close        _'_: last       [0..9]: Switch
     ("t" vimish-fold-toggle "toggle fold")
     ("r" vimish-fold-delete "remove fold"))))
 
-(pretty-hydra-define hydra-whitespace
-  (:hint nil :color teal :quit-key "q" :title (with-faicon "low-vision" "Whitespace" 1 -0.05))
+(pretty-hydra-define hydra-windows
+  (:hint nil :color teal :quit-key "q" :title (with-faicon "low-vision" "window navigation" 1 -0.05))
   ("Action"
-   (("w" whitespace-mode        "toggle whitespace mode")
-    ("W" global-whitespace-mode "toggle global whitespace mode"))))
+   (("h" windmove-left  "move left")
+    ("j" windmove-down  "move down")
+    ("k" windmove-up    "move up")
+    ("l" windmove-right "move right"))))
 ;;; hydra.el ends here
