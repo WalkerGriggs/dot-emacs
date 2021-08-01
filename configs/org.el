@@ -16,6 +16,16 @@
    (file-name-as-directory (concat _org-roam-directory "biblio")))
   "Base org-ref-bibliography directory")
 
+(defconst _org-agenda-files
+  (mapcar (lambda (x) (concat _org-directory x))
+          '("agenda.org"))
+  "List of all org agenda files")
+
+(defconst _org-ref-bibtex-files
+  (mapcar (lambda (x) (concat _org-ref-directory x))
+          '("papers.bib"))
+  "List of all org-ref bibtex files")
+
 ;;; Code
 (use-package org
   :mode (("\\.org$" . org-mode))
@@ -27,15 +37,23 @@
         org-src-preserve-indentation t
         org-src-fontify-natively     t
         org-clock-persist            t
-        org-clock-mode-line-total    'current)
+        org-clock-mode-line-total    'current
+        org-agenda-files             _org-agenda-files)
 
   (setq org-todo-keywords
         '((sequence "TODO" "MEETING" "WAITING" "|" "DONE" "CANCELED")))
 
-  ;; (setq org-todo-keyword-faces
-  ;;       '(("TODO"     . org-todo)
-  ;;         ("CANCELED" . org-archived)
-  ;;         ("DONE"     . org-done)))
+  (setq org-capture-templates
+        '(("s" "Code Snippet" entry
+           (file (lambda () (concat org-directory "snippets.org")))
+           "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
+          ("t" "Agenda TODO" entry
+           (file (lambda () (concat org-directory "agenda.org")))
+           "* TODO %?\n  %i\n  %a")))
+
+  (setq org-agenda-clockreport-parameter-plist
+        (quote
+         (:scope file :maxlevel 2 :step day :tstart "<-5d>" :tend "<now>")))
 
   (add-to-list 'org-structure-template-alist
                '("s" . "src"))
@@ -51,8 +69,8 @@
 (use-package org-ref
   :ensure t
   :config
-  (setq org-ref-default-bibliography (list (concat _org-ref-directory "papers.bib"))
-        org-ref-pdf-directory        (file-truename "~/Documents/papers/")))
+  (setq org-ref-pdf-directory        (file-truename "~/Documents/papers/")
+        org-ref-default-bibliography _org-ref-bibtex-files))
 
 (use-package org-roam
   :ensure t
@@ -73,8 +91,8 @@
   :hook (org-roam-mode . org-roam-bibtex-mode)
   :config
   (setq
-   reftex-default-bibliography    (list (concat _org-ref-directory "papers.bib"))
-   bibtex-completion-bibliography (list (concat _org-ref-directory "/papers.bib"))
+   reftex-default-bibliography    _org-ref-bibtex-files
+   bibtex-completion-bibliography _org-ref-bibtex-files
    bibtex-completion-notes-path   _org-ref-directory
    bibtex-completion-pdf-field    "file")
 
