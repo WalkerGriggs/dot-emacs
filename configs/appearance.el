@@ -58,9 +58,4 @@
 (use-package smart-mode-line
   :init (add-hook 'after-init-hook 'sml/setup)
   :config (setq sml/theme 'respectful))
-
-(use-package minions
-  :config (minions-mode 1)
-  (setq minions-mode-line-lighter "~"))
-
 ;;; appearance.el ends here
