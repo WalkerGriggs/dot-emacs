@@ -6,7 +6,6 @@
 ;;; Code
 
 (use-package ibuffer
-  :ensure nil
   :bind ("C-x C-b" . ibuffer)
   :init (setq ibuffer-filter-group-name-face '(:inherit (font-lock-string-face bold)))
   :config

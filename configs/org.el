@@ -67,13 +67,11 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (use-package org-ref
-  :ensure t
   :config
   (setq org-ref-pdf-directory        (file-truename "~/Documents/papers/")
         org-ref-default-bibliography _org-ref-bibtex-files))
 
 (use-package org-roam
-  :ensure t
   :init
   (setq org-roam-v2-ack t)
   :config

@@ -10,6 +10,15 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;; Enable use-package debugging
+(if init-file-debug
+    (setq use-package-verbose t
+          use-package-expand-minimally nil
+          use-package-compute-statistics t
+          debug-on-error t)
+  (setq use-package-verbose nil
+        use-package-expand-minimally t))
+
 ;; Always ensure packages
 (customize-set-variable 'use-package-always-ensure t)
 (setq use-package-verbose t)
