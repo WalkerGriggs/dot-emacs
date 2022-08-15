@@ -7,7 +7,7 @@
 
 These configs aim to provide sensible defaults, easy-to-remember bindings, and an overal smooth workflow. This project has one rule: keep it simple. If I don't use it, I don't configure it.
 
-It's easy to get pulled into the trap of "configure all the things". Some projects get away with it, but they usually cater to a wider audience. These condigs are tailored to my workflow -- simple as that.
+It's easy to get pulled into the trap of "configure all the things". Some projects get away with it, but they usually cater to a wider audience. These configs are tailored to my workflow -- simple as that.
 
 ## Features
 
