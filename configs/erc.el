@@ -9,24 +9,11 @@
   :defer t
   :bind (("C-c n" . erc-next-channel-buffer))
   :init
-  (defun erc-count-users ()
-    "Displays the number of users connected on the current channel."
-    (interactive)
-    (if (get-buffer "irc.freenode.net:6667")
-        (let ((channel (erc-default-target)))
-          (if (and channel (erc-channel-p channel))
-              (message "%d users are online in %s"
-                       (hash-table-count erc-channel-users)
-                       channel)
-            (user-error "The current buffer is not a channel")))
-      (user-error "You must first start ERC")))
-
   (defun erc-preprocess (string)
     "Avoids channel flooding by remove hidden newlines."
     (setq str
           (string-trim
            (replace-regexp-in-string "\n+" " " str))))
-
   :config
   (erc-track-mode t)
   (add-hook 'erc-connect-pre-hook (lambda (x) (erc-update-modules)))

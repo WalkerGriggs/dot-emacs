@@ -3,7 +3,7 @@
 ;; Keywords: convenience, configs
 ;; This file is not part of GNU Emacs.
 (defconst _org-directory
-  (file-truename "~/Documents/org/")
+  (file-truename "~/Dropbox/org/")
   "Base org directory")
 
 (defconst _org-roam-directory
@@ -78,10 +78,6 @@
   (setq org-roam-directory         _org-roam-directory
         org-roam-completion-system 'ivy)
 
-  (setq org-roam-capture-templates '(("r" "bibliography reference" plain "%?"
-                                      :if-new
-                                      (file+head "biblio/${citekey}.org" "#+title: ${title}\n")
-                                      :unnarrowed t)))
   (org-roam-setup)
   (require 'org-roam-protocol))
 
