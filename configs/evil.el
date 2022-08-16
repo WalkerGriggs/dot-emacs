@@ -28,5 +28,5 @@
 
   (with-eval-after-load 'evil-maps
     (define-key evil-motion-state-map (kbd "/") 'swiper)
-    (define-key evil-normal-state-map (kbd "SPC SPC") 'counsel-M-x)))
+    (define-key evil-normal-state-map (kbd "SPC") 'hydra-main/body)))
 ;;; evil.el ends here
