@@ -28,5 +28,6 @@
 
   (with-eval-after-load 'evil-maps
     (define-key evil-motion-state-map (kbd "/") 'swiper)
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
     (define-key evil-normal-state-map (kbd "SPC") 'hydra-main/body)))
 ;;; evil.el ends here
