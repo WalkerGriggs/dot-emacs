@@ -26,6 +26,12 @@
           '("papers.bib"))
   "List of all org-ref bibtex files")
 
+(use-package org-web-tools
+  :config
+  (defun org-web-tools-insert-link-for-clipboard-url ()
+    (interactive)
+    (org-web-tools--org-link-for-url (org-web-tools--get-first-url))))
+
 ;;; Code
 (use-package org
   :mode (("\\.org$" . org-mode))
@@ -49,7 +55,9 @@
            "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
           ("t" "Agenda TODO" entry
            (file (lambda () (concat org-directory "agenda.org")))
-           "* TODO %?\n  %i\n  %a")))
+           "* TODO %?\n  %i\n  %a")
+          ("b" "Bookmark (Clipboard)" entry (file+headline "~/Documents/org/bookmarks.org" "Bookmarks")
+           "** %(org-web-tools-insert-link-for-clipboard-url)\n:PROPERTIES:\n:TIMESTAMP: %t\n:END:%?\n" :empty-lines 1 :prepend t)))
 
   (setq org-agenda-clockreport-parameter-plist
         (quote
