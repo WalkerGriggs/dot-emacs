@@ -3,7 +3,7 @@
 ;; Keywords: convenience, configs
 ;; This file is not part of GNU Emacs.
 (defconst _org-directory
-  (file-truename "~/Dropbox/org/")
+  (file-truename "~/Documents/zet/")
   "Base org directory")
 
 (defconst _org-roam-directory
@@ -87,7 +87,20 @@
         org-roam-completion-system 'ivy)
 
   (org-roam-setup)
-  (require 'org-roam-protocol))
+  (require 'org-roam-protocol)
+
+  (defun org-roam-index-nodes ()
+    (interactive)
+    (dolist (n1 (org-roam-node-list))
+      (let* ((description (org-roam-node-formatted n1))
+             (id (org-roam-node-id n1)))
+        (progn
+          (insert (concat (org-link-make-string
+                           (concat "id:" id)
+                           description) "\n"))
+          (run-hook-with-args 'org-roam-post-node-insert-hook
+                              id
+                              description))))))
 
 (use-package org-roam-bibtex
   :hook (org-roam-mode . org-roam-bibtex-mode)
