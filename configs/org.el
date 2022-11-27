@@ -12,11 +12,6 @@
    (file-name-as-directory (concat _org-directory "roam")))
   "Base org-roam directory.")
 
-(defconst _org-roam-markdown-directory
-  (file-truename
-   (file-name-as-directory (concat _org-directory "markdown")))
-  "Base org-roam directory for exported markdown.")
-
 (defconst _org-ref-directory
   (file-truename
    (file-name-as-directory (concat _org-roam-directory "biblio")))
@@ -95,19 +90,7 @@
         org-roam-completion-system 'ivy)
 
   (org-roam-setup)
-  (require 'org-roam-protocol)
-  (require 'ox-gfm)
-
-  (defun org-roam-export-gfm ()
-    "Export all roam nodes to github flavor markdown"
-    (interactive)
-    (dolist (infile (directory-files _org-roam-directory t ".+org"))
-      (with-temp-buffer
-        (insert-file-contents infile)
-        (let ((outfile (concat
-                        _org-roam-markdown-directory
-                        (concat (file-name-base infile) ".md"))))
-          (org-export-to-file 'gfm outfile))))))
+  (require 'org-roam-protocol))
 
 (use-package org-roam-bibtex
   :hook (org-roam-mode . org-roam-bibtex-mode)
