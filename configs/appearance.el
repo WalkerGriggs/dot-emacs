@@ -11,8 +11,11 @@
 
 (set-frame-font "IBM Plex Mono 11" nil t)
 
-(use-package dracula-theme
-  :init
+(use-package autothemer)
+(use-package dracula-theme)
+
+(condition-case nil
+    (load-theme 'catppuccin-mocha t)
   (when (not (member "dracula" (custom-available-themes)))
     (load-theme 'dracula t)))
 
