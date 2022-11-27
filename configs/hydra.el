@@ -6,6 +6,9 @@
 ;;; Code
 
 (use-package hydra
+  :bind
+  ("C-c c" . hydra-main/body)
+  ("C-c n" . hydra-navigation/body)
   :config
   (defhydra hydra-eyebrowse (:color teal :hint nil)
     ("r" eyebrowse-rename-window-config      "rename")
