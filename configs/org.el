@@ -3,13 +3,19 @@
 ;; Keywords: convenience, configs
 ;; This file is not part of GNU Emacs.
 (defconst _org-directory
-  (file-truename "~/Documents/zet/")
+  (file-truename
+   (file-name-as-directory "~/Documents/zettel"))
   "Base org directory")
 
 (defconst _org-roam-directory
   (file-truename
    (file-name-as-directory (concat _org-directory "roam")))
   "Base org-roam directory.")
+
+(defconst _org-roam-markdown-directory
+  (file-truename
+   (file-name-as-directory (concat _org-directory "markdown")))
+  "Base org-roam directory for exported markdown.")
 
 (defconst _org-ref-directory
   (file-truename
@@ -42,6 +48,8 @@
         org-src-tabs-act-natively    t
         org-src-preserve-indentation t
         org-src-fontify-natively     t
+        org-export-with-title        t
+        org-export-with-toc          nil
         org-clock-persist            t
         org-clock-mode-line-total    'current
         org-agenda-files             _org-agenda-files)
@@ -88,19 +96,18 @@
 
   (org-roam-setup)
   (require 'org-roam-protocol)
+  (require 'ox-gfm)
 
-  (defun org-roam-index-nodes ()
+  (defun org-roam-export-gfm ()
+    "Export all roam nodes to github flavor markdown"
     (interactive)
-    (dolist (n1 (org-roam-node-list))
-      (let* ((description (org-roam-node-formatted n1))
-             (id (org-roam-node-id n1)))
-        (progn
-          (insert (concat (org-link-make-string
-                           (concat "id:" id)
-                           description) "\n"))
-          (run-hook-with-args 'org-roam-post-node-insert-hook
-                              id
-                              description))))))
+    (dolist (infile (directory-files _org-roam-directory t ".+org"))
+      (with-temp-buffer
+        (insert-file-contents infile)
+        (let ((outfile (concat
+                        _org-roam-markdown-directory
+                        (concat (file-name-base infile) ".md"))))
+          (org-export-to-file 'gfm outfile))))))
 
 (use-package org-roam-bibtex
   :hook (org-roam-mode . org-roam-bibtex-mode)
@@ -124,4 +131,5 @@
          ":DOI: ${doi}\n"
          ":URL: ${url}\n"
          ":END:\n\n")))
+
 ;;; org.el ends here
