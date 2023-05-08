@@ -17,13 +17,9 @@
  ((font-available-p "IBM Plex Mono")
         (set-frame-font "IBM Plex Mono 11" nil t)))
 
-(use-package autothemer)
-(use-package dracula-theme)
-
-(condition-case nil
-    (load-theme 'catppuccin-mocha t)
-  (when (not (member "dracula" (custom-available-themes)))
-    (load-theme 'dracula t)))
+(use-package dracula-theme
+  :config
+    (load-theme 'dracula t))
 
 (use-package all-the-icons
   :defer t
