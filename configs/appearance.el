@@ -9,7 +9,13 @@
 (menu-bar-mode -1)
 (show-paren-mode 1)
 
-(set-frame-font "IBM Plex Mono 11" nil t)
+(defun font-available-p (font-name)
+  "Determine whether FONT-NAME locally available."
+  (find-font (font-spec :name font-name :weight 'normal :slant 'normal)))
+
+(cond
+ ((font-available-p "IBM Plex Mono")
+        (set-frame-font "IBM Plex Mono 11" nil t)))
 
 (use-package autothemer)
 (use-package dracula-theme)
