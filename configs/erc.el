@@ -31,10 +31,9 @@
 
         erc-prompt (lambda () (concat "" (buffer-name) "]")))
 
-  ;; Match notice and timestamp faces to comments.
+  ;; Match notice and comment faces.
   (let ((color (face-attribute 'font-lock-comment-face :foreground)))
-    (set-face-attribute 'erc-notice-face nil :foreground color :weight 'normal)
-    (set-face-attribute 'erc-timestamp-face nil :foreground color :weight 'bold)))
+    (set-face-attribute 'erc-notice-face nil :foreground color :weight 'normal)))
 
 (use-package erc-hl-nicks
   :after erc)

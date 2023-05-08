@@ -40,20 +40,16 @@
     (add-hook hook #'idle-highlight-mode)))
 
 ;; Fringe
-(use-package fringe
-  :config
-  (setq-default left-fringe-width  0
-                right-fringe-width  5))
+(setq-default left-fringe-width 0
+              right-fringe-width 5)
+
+;; Scrall Bar
+(scroll-bar-mode -1)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil))
+      mouse-wheel-progressive-speed nil)
 
 (use-package hlinum
   :init (hlinum-activate))
-
-;; Scrall Bar
-(use-package scroll-bar
-  :config
-  (scroll-bar-mode -1)
-  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil))
-        mouse-wheel-progressive-speed nil))
 
 ;; Linum
 (use-package linum

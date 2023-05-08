@@ -20,6 +20,7 @@
         use-package-expand-minimally t))
 
 ;; Always ensure packages
+(require 'use-package)
 (customize-set-variable 'use-package-always-ensure t)
 (setq use-package-verbose t)
 
