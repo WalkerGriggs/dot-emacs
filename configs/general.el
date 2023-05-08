@@ -13,6 +13,9 @@
 (when (display-graphic-p)
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 
+;; Disable bell
+(setq ring-bell-function 'ignore)
+
 ;; General Necessities
 (fset 'yes-or-no-p 'y-or-n-p)
 
