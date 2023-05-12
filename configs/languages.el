@@ -34,8 +34,23 @@
   (([(meta down)] . ruby-forward-sexp)
    ([(meta up)]   . ruby-backward-sexp)))
 
+;; Dockerfiles
+(use-package dockerfile-mode
+  :mode ("Dockerfile\\'" . dockerfile-mode))
+
+;; Proto
+(use-package protobuf-mode
+  :mode ("\\.proto\\'" . protobuf-mode))
+
+(use-package bazel
+  :mode
+  ("\\.bzl\\'" . bazel-starlark-mode)
+  ("\\.bazel\\'" . bazel-starlark-mode))
+
 ;; Rust
-(use-package rust-mode)
+(use-package rust-mode
+  :mode ("\\.rs\\'" . rust-mode))
+
 (use-package cargo
   :hook (rust-mode . cargo-minor-mode))
 
