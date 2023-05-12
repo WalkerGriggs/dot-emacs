@@ -84,9 +84,31 @@
   :commands (hl-region
              hl-region-remove))
 
+;; Dump jump
 (use-package dumb-jump
   :config (setq dumb-jump-selector 'ivy
                 dumb-jump-aggressive t
                 dumb-jump-confirm-jump-to-modified-file t))
 
+;; Bookmark
+(use-package bm
+  :init
+  (setq bm-restore-repository-on-load t)
+
+  :config
+  (setq-default bm-buffer-persistence t)
+
+  (setq bm-cycle-all-buffers t
+        bm-repository-file   "~/.emacs.d/bm-repository")
+
+  (add-hook 'after-init-hook        #'bm-repository-load) ;; load on init
+  (add-hook 'kill-buffer-hook       #'bm-buffer-save)     ;; save on kill
+  (add-hook 'after-save-hook        #'bm-buffer-save)     ;; save on file save
+  (add-hook 'find-file-hooks        #'bm-buffer-restore)  ;; restore on find
+  (add-hook 'after-revert-hook      #'bm-buffer-restore)  ;; restore after revert
+  (add-hook 'vc-before-checkin-hook #'bm-buffer-save)     ;; save before check-in
+
+  (add-hook 'kill-emacs-hook #'(lambda nil
+                                 (bm-buffer-save-all)
+                                 (bm-repository-save))))
 ;; navigation.el ends here

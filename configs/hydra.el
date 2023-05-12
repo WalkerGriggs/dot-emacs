@@ -33,6 +33,12 @@
     ("f"   split-window-right                "split right")
     ("s"   delete-window                     "delete window"))
 
+  (defhydra hydra-bm (:color teal :hint nil)
+    ("t"   bm-toggle   "toggle")
+    ("s"   bm-show     "show")
+    ("a"   bm-show-all "show all")
+    ("n"   bm-next     "next"))
+
   (defhydra hydra-dumb-jump (:color teal :hint nil)
     ("g"   dumb-jump-go                      "go")
     ("b"   dumb-jump-back                    "jump back")
@@ -71,6 +77,7 @@
     ("d"   counsel-M-x                       "Command")
     ("f"   counsel-find-file                 "Find File")
 
+    ("b"   hydra-bm/body                     "Bookmark")
     ("e"   hydra-eyebrowse/body              "Eyebrowse")
     ("n"   hydra-navigation/body             "Navigation")
     ("j"   hydra-dumb-jump/body              "Dumb-jump")
